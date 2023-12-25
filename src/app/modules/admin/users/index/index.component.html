@@ -1,0 +1,104 @@
+<div class="card card-custom gutter-b">
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label"><i class="icon-2x text-dark-50 flaticon-users mx-2"></i> Lista Usuarios</h3>
+        </div>
+        <div class="card-toolbar">
+            <a type="button" class="btn btn-primary" routerLink="/admin/users/create" ><i class="icon-2x text-white flaticon-user-add"></i> Nuevo
+                Usuario</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <!-- begin: Filtration form -->
+        <div class="form form-label-right">
+            <div class="form-group row">
+                <div class="col-2">
+                    <select class="form-control" name="status" placeholder="Filtrar por Estado">
+                        <option value="">Todos</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Desactivo</option>
+                    </select>
+                    <small class="form-text text-muted"><b>Filtrar</b> por Estado</small>
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" name="searchText" placeholder="Buscar" value="" /><small
+                        class="form-text text-muted"><b>Buscar</b> por correo y nombre</small>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-primary ml-2" placement="top" [ngbTooltip]="'Filtro'">
+                        <i class="icon text-white flaticon-search-1"></i>
+                    </button>
+                    <button class="btn btn-dark ml-2" placement="top" [ngbTooltip]="'Reset'" (click)="reset()">
+                        <i class="icon text-white flaticon-refresh" ></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="loading">
+            <span class="spinner spinner-primary ml-5"></span>
+        </ng-container>
+
+        <div class="table-responsive">
+            <table class="table table-head-custom" >
+                <thead>
+                    <tr class="text-left">
+                        <th class="pr-0">Nombres
+
+                        </th>
+                        <th class="pr-0">Apellidos
+
+                        </th>
+                        <th class="pr-0">Email</th>
+                        <th>Status</th>
+                        <th class="pr-0">Acción</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!loading">
+                        <tr  *ngFor="let user of users" >
+                            <td class="pr-0">{{ user.nombres }}</td>
+                            <td class="pr-0">{{ user.apellidos }}</td>
+                            <td class="pr-0">{{ user.email }}</td>
+                            <td>
+                                <span class="label label-lg font-weight-bold {{ user.status == 1 ? 'label-light-success' : 'label-light-danger' }} label-inline">{{ user.status == 1 ? 'Activo' : 'Desactivo' }}</span>
+                            </td>
+                            <td class="pr-0">
+                                <a class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" title="Editar" [routerLink]="['/admin/users/update',user.uuid]" >
+                                    <i class="icon flaticon-edit-1 text-primary"></i>
+                                </a>
+                                <a class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" title="Eliminar" href="#">
+                                    <i class="icon flaticon-delete-1 text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- START card-footer -->
+    <div class="card-footer">
+        <!-- START d-flex-->
+        <div class="d-flex" *ngIf="!loading">
+            <div class="">
+                <pre>Página: {{ data?.current_page }} de {{ data?.last_page }} | Registros del {{ data?.from }} al {{ data?.to }} | Total {{ data?.total }}</pre> 
+            </div>
+            <!-- START ml-auto -->
+            <div class="ml-auto">
+                <!-- PAGINATION -->
+                <ngb-pagination
+                [(collectionSize)]="totalPages"
+                [(page)]="currentPage"
+                [pageSize]="20"
+                [maxSize]="5"
+                [rotate]="true"
+                [boundaryLinks]="true"
+                (pageChange)="pageChange($event)"
+              ></ngb-pagination>
+            </div>
+            <!-- END ml-auto -->
+        </div>
+        <!-- END d-flex -->
+    </div>
+    <!-- END card-footer -->
+</div>
