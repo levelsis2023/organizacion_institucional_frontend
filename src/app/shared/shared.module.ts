@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
-import { NgbPaginationModule, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbPaginationModule, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { SortIconComponent } from './components/sort-icon/sort-icon.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,13 +16,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgbTooltip,
     NgbPaginationModule,
     InlineSVGModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModalModule
   ],
   exports: [
     NgbTooltip,
     NgbPaginationModule,
     SortIconComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModalModule
   ]
 })
 export class SharedModule { }

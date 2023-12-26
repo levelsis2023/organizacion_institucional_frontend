@@ -102,8 +102,8 @@ export class UpdateComponent {
         console.log(response);
         //this.form.patchValue(response.data);
         this.form.patchValue({
-          name: response.data.nombres,
-          last_name: response.data.apellidos,
+          name: response.data.name,
+          last_name: response.data.last_name,
           email: response.data.email,
           phone: response.data.phone,
           address: response.data.address

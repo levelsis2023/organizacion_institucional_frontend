@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class InstitutionsService {
 
   constructor(
     private http: HttpClient
@@ -29,25 +29,28 @@ export class UserService {
       .set('status', status)
       .set('role', role);
 
-    return this.http.get<any>('api/users', { params });
+    return this.http.get<any>('api/institutions', { params });
   }
 
 
   public store(data: any) {
-    return this.http.post<any>('api/usuarios', data);
+    return this.http.post<any>('api/institutions', data);
   }
 
-
   public show(id: number) {
-   // return this.http.get<any>('api/usuarios/' + id);
-    return this.http.post<any>('api/usuarios/obtener' ,{id});
+   return this.http.get<any>('api/institutions/' + id);
   }
 
   public update(id: number, data: any) {
-    return this.http.put<any>('api/usuarios/' + id, data);
+    return this.http.put<any>('api/institutions/' + id, data);
   }
 
   public destroy(id: number) {
-    return this.http.delete<any>('api/usuarios/' + id);
+    return this.http.delete<any>('api/institutions/' + id);
   }
+
+  public subinstitutions(id: number) {
+    return this.http.get<any>('api/institutions/' + id + '/subinstitutions');
+  }
+
 }

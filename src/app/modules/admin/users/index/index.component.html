@@ -44,7 +44,6 @@
                 <thead>
                     <tr class="text-left">
                         <th class="pr-0">Nombres
-
                         </th>
                         <th class="pr-0">Apellidos
 
@@ -56,8 +55,8 @@
                 </thead>
                 <tbody *ngIf="!loading">
                         <tr  *ngFor="let user of users" >
-                            <td class="pr-0">{{ user.nombres }}</td>
-                            <td class="pr-0">{{ user.apellidos }}</td>
+                            <td class="pr-0">{{ user.name }}</td>
+                            <td class="pr-0">{{ user.last_name }}</td>
                             <td class="pr-0">{{ user.email }}</td>
                             <td>
                                 <span class="label label-lg font-weight-bold {{ user.status == 1 ? 'label-light-success' : 'label-light-danger' }} label-inline">{{ user.status == 1 ? 'Activo' : 'Desactivo' }}</span>

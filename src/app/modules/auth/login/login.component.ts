@@ -26,9 +26,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   returnUrl: string;
   isLoading$: Observable<boolean>;
 
-  // private fields
-  private unsubscribe: Subscription[] = [];
-
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -56,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.email,
           Validators.minLength(3),
-          Validators.maxLength(320), // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+          Validators.maxLength(320)
         ]),
       ],
       password: [
@@ -72,28 +69,22 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   submit() {
     this.hasError = false;
-
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
       next: (resp: any) => {
-        console.log(resp)
         if (resp) {
           document.location.reload();
         } else {
           this.hasError = true;
         }
       },
-
       error: (error: any) => {
         console.log(error)
         this.hasError = true;
       }
-
     });
-  
-    // this.unsubscribe.push(loginSubscr);
   }
 
+
   ngOnDestroy() {
-    this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }
 }

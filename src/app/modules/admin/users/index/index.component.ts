@@ -45,9 +45,9 @@ export class IndexComponent implements  OnInit {
       ''
     ).subscribe({
       next: (res:any) => {
-        this.users=res.data.data;
-        this.totalPages=res.data.pagination.last_page;
-        this.currentPage=res.data.pagination.current_page;
+        this.users=res;
+        // this.totalPages=res.data.pagination.last_page;
+        // this.currentPage=res.data.pagination.current_page;
         this.loading=false;
       },
       error: (err:any) => {

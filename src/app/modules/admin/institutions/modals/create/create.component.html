@@ -1,0 +1,43 @@
+
+  
+  <div class="modal-header">
+    <div class="modal-title h4">Crear institucion</div>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" *ngIf="error">
+                <div class="alert-text">{{ error }}</div>
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="form" (submit)="submit()" class="needs-validation" novalidate>
+        <div class="form-row">
+            <!-- Name -->
+            <div class="form-group col-md-12">
+                <label for="name">Nombre:</label>
+                <input type="text" formControlName="name" class="form-control"
+                    [class.is-invalid]="form.get('name').invalid && (form.get('name').dirty || submitted)"
+                    required />
+                <div class="invalid-feedback">
+                    <small *ngIf="form.get('name').hasError('required')">Name is required.</small>
+                </div>
+            </div>
+
+            <button type="submit" class="d-none"></button>
+
+        </div>
+    </form>
+
+  </div>
+  
+  <div class="modal-footer">
+    <div>
+      <button type="button" class="btn btn-light btn-elevate mr-1" (click)="modal.dismiss()">
+        Cancel
+      </button>&nbsp;
+      <button type="button" class="btn btn-primary btn-elevate" (click)="submit()">
+        Crear
+      </button>
+    </div>
+  </div>

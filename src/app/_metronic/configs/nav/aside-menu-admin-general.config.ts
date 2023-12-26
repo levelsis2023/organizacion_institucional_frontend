@@ -26,5 +26,23 @@ export const AsideMenuAdminGeneral = {
           }
         ]
       },
+      {
+        title: 'Instituciones',
+        root: true,
+        name: "institutions",
+        icon: 'flaticon2-architecture-and-city',
+        svg: './assets/media/svg/icons/Design/Layers.svg',
+        page: '/admin/institutions/index',
+        bullet: 'dot',
+      },
+      {
+        title: 'Areas',
+        root: true,
+        name: "institutions",
+        icon: 'flaticon2-architecture-and-city',
+        svg: './assets/media/svg/icons/Design/Layers.svg',
+        page: '/admin/institutions/index',
+        bullet: 'dot',
+      }
     ]
 }
