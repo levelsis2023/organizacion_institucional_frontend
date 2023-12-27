@@ -18,6 +18,7 @@ export class IndexComponent {
   direction = 'asc';
   totalPages: number=0;
   currentPage: number=0;
+  rowsPerPage: number=0;
 
   constructor(
     private institutionsService: InstitutionsService,
@@ -31,6 +32,8 @@ export class IndexComponent {
 
   pageChange(event: any): void {
     console.log(event);
+    this.currentPage=event;
+    this.index();
   }
 
   sort(event: any): void {
@@ -51,9 +54,11 @@ export class IndexComponent {
     ).subscribe({
       next: (res:any) => {
         console.log(res);
-        this.institutions=res.institutions;
-        // this.totalPages=res.data.pagination.last_page;
-        // this.currentPage=res.data.pagination.current_page;
+        this.institutions=res.institutions.data;
+        this.totalPages=res.institutions.last_page;
+        this.currentPage=res.institutions.current_page;
+        this.rowsPerPage=res.institutions.per_page;
+        this.data = res.institutions;
         this.loading=false;
       },
       error: (err:any) => {

@@ -1,12 +1,12 @@
 <div class="card card-custom gutter-b">
     <div class="card-header">
         <div class="card-title">
-            <h3 class="card-label"><i class="icon-2x text-dark-50 flaticon-users mx-2"></i> Lista Instituciones</h3>
+            <h3 class="card-label"><i class="icon-2x text-dark-50 flaticon-users mx-2"></i> Lista areas</h3>
         </div>
         <div class="card-toolbar">
             <a type="button" class="btn btn-primary" (click)="openModalCreate()"><i
                     class="icon-2x text-white flaticon-add"></i> Nueva
-                Institucion</a>
+                area</a>
         </div>
     </div>
     <div class="card-body">
@@ -37,7 +37,13 @@
             <table class="table table-head-custom">
                 <thead>
                     <tr class="text-left">
+                        <th class="pr-0">Codigo
+
+                        </th>
                         <th class="pr-0">Nombres
+
+                        </th>
+                        <th class="pr-0">Nombre corto
 
                         </th>
                         <th class="pr-0">Acción</th>
@@ -45,7 +51,9 @@
                 </thead>
                 <tbody *ngIf="!loading">
                     <tr *ngFor="let institution of institutions">
+                        <td class="pr-0">{{ institution.code }}</td>
                         <td class="pr-0">{{ institution.name }}</td>
+                        <td class="pr-0">{{ institution.short_name }}</td>
                         <td class="pr-0">
                             <a class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" [ngbTooltip]="'Editar'"
                                 title="Editar" (click)="openModalUpdate(institution.id)">
@@ -54,16 +62,6 @@
                             <a class="btn btn-icon btn-light btn-hover-danger btn-sm mx-3" [ngbTooltip]="'Eliminar'"
                                 title="Eliminar" (click)="openModalDelete(institution.id)">
                                 <i class="icon flaticon-delete-1 text-danger"></i>
-                            </a>
-                            <a class="btn btn-icon btn-light btn-hover-info btn-sm mx-3"
-                            [ngbTooltip]="'Areas'" title="Areas"
-                            [routerLink]="['/admin/institutions', institution.id, 'areas','index']">
-                            <i class="icon flaticon-list text-info"></i>
-                            </a>
-                            <a class="btn btn-icon btn-light btn-hover-info btn-sm mx-3"
-                                [ngbTooltip]="'Subinstituciones'" title="Subinstituciones"
-                                [routerLink]="['/admin/institutions', institution.id, 'subinstitutions']">
-                                <i class="icon flaticon-list text-info"></i>
                             </a>
                         </td>
                     </tr>

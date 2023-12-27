@@ -37,7 +37,12 @@ export class CreateComponent {
    */
   createForm() {
     this.form = this.fb.group({
+      code: ['', Validators.required],
       name: ['', Validators.required],
+      short_name: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: ['', Validators.required],
+      born_code: ['', Validators.required],
       parent_id: [this.parentId],
     });
   }
