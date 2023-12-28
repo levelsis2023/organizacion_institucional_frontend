@@ -20,7 +20,7 @@ export class IndexComponent {
   totalPages: number = 0;
   currentPage: number = 0;
   rowsPerPage: number = 0;
-  institucionId: any = '';
+  institutionId: any = '';
 
   constructor(
     private areaService: AreaService,
@@ -28,7 +28,7 @@ export class IndexComponent {
     private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.params.subscribe(params => {
-      this.institucionId = params['id'];
+      this.institutionId = params['id'];
       this.index();
     });
   }
@@ -56,10 +56,9 @@ export class IndexComponent {
       this.currentPage,
       10,
       '',
-      this.institucionId
+      this.institutionId
     ).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.institutions = res.area.data;
         this.totalPages = res.area.last_page;
         this.currentPage = res.area.current_page;
@@ -84,10 +83,9 @@ export class IndexComponent {
 
   openModalCreate() {
     const modalRef = this.modalService.open(CreateComponent, { size: 'lg', backdrop: false });
-    modalRef.componentInstance.name = 'World';
+    modalRef.componentInstance.institutionId = this.institutionId;
 
     modalRef.componentInstance.onCreate.subscribe((res: any) => {
-      console.log(res);
       this.index();
     });
   }

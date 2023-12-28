@@ -37,15 +37,21 @@
             <table class="table table-head-custom">
                 <thead>
                     <tr class="text-left">
+                        <th class="pr-0">Codigo</th>
                         <th class="pr-0">Nombres
 
+                        </th>
+                        <th>
+                            Nombre Corto
                         </th>
                         <th class="pr-0">Acción</th>
                     </tr>
                 </thead>
                 <tbody *ngIf="!loading">
                     <tr *ngFor="let institution of institutions">
+                        <td class="pr-0">{{ institution.code }}</td>
                         <td class="pr-0">{{ institution.name }}</td>
+                        <td class="pr-0">{{ institution.short_name }}</td>
                         <td class="pr-0">
                             <a class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" [ngbTooltip]="'Editar'"
                                 title="Editar" (click)="openModalUpdate(institution.id)">

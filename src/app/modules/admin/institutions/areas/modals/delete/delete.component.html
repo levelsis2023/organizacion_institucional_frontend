@@ -1,1 +1,29 @@
-<p>delete works!</p>
+
+  
+  <div class="modal-header">
+    <div class="modal-title h4">Eliminar area</div>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" *ngIf="error">
+                <div class="alert-text">{{ error }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-warning" >
+        <div class="alert-text"> <i class="icon-2x text-dark-50 flaticon-warning mx-2"></i> <b>Nota:</b> Esta acción no se puede deshacer.</div>
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+    <div>
+      <button type="button" class="btn btn-light btn-elevate mr-1" (click)="modal.dismiss()">
+        Cancel
+      </button>&nbsp;
+      <button type="button" class="btn btn-primary btn-elevate" (click)="submit()">
+        Eliminar
+      </button>
+    </div>
+  </div>

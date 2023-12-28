@@ -46,7 +46,12 @@ export class UpdateComponent implements OnInit {
   createForm() {
     this.form = this.fb.group({
       id: [this.id],
+      code: ['', Validators.required],
       name: ['', Validators.required],
+      short_name: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: ['', Validators.required],
+      born_code: ['', Validators.required],
       parent_id: [''],
     });
   }
@@ -89,7 +94,12 @@ export class UpdateComponent implements OnInit {
       next: (res:any) => {
         this.form.patchValue({
           id: res.institution.id,
+          code: res.institution.code,
           name: res.institution.name,
+          short_name: res.institution.short_name,
+          phone: res.institution.phone,
+          email: res.institution.email,
+          born_code: res.institution.born_code,
           parent_id: res.institution.parent_id
         })
 
